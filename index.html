@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyen Thai Thanh Van - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Header Styles (Đã cập nhật) --- */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            text-align: left;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #bdc3c7;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Main Content Styles --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h3.section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        /* Summary */
+        .summary-text {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* Skills */
+        /* --- Đột phá khu vực Skills --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #eef2f5;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Hiệu ứng vệt sáng lướt qua thẻ */
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transform: skewX(-20deg);
+            transition: 0.7s;
+            z-index: -1;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+
+        .skill-category:hover::before {
+            left: 150%;
+        }
+
+        .skill-category h4 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category h4 i {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: #f0f4f8;
+            color: #4a5568;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            cursor: default;
+        }
+
+        /* Thẻ tag nảy lên và đổi màu */
+        .skill-tag:hover {
+            transform: scale(1.1) translateY(-3px);
+            background: var(--secondary-color);
+            color: white;
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Đảm bảo vẫn đẹp trên điện thoại */
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Projects */
+        /* --- Đột phá khu vực Projects --- */
+        .project-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border-left: 5px solid var(--secondary-color);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
+        }
+
+        /* Phân bổ tiêu đề và thời gian/link */
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            border-bottom: 1px dashed #e1e8ed;
+            padding-bottom: 1rem;
+        }
+
+        .project-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .project-subtitle {
+            font-size: 1.05rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .project-meta-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.8rem;
+        }
+
+        /* Khối thời gian */
+        .project-date {
+            font-size: 0.85rem;
+            color: #636e72;
+            background: #f1f2f6;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .project-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Huy hiệu thành tích & Công cụ */
+        .project-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge {
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .award-badge {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .tool-badge {
+            background: #e1ecf4;
+            color: #39739d;
+        }
+
+        /* Custom Bullets (Mũi tên thay cho dấu chấm) */
+        .project-details {
+            list-style: none; /* Bỏ dấu chấm mặc định */
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .project-details li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .project-details li::before {
+            content: '\f105'; /* Mã icon mũi tên của FontAwesome */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .project-meta-right {
+                align-items: flex-start;
+            }
+        }
+
+        /* Experience & Education */
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .timeline-date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary-color);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        /* --- Responsive Design (Điện thoại) --- */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .header-content {
+                text-align: center;
+            }
+            .contact-info {
+                justify-content: center;
+            }
+            .timeline-header, .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .timeline-date {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <!-- Ảnh đại diện -->
+            <img src="profile.jpg" alt="Nguyen Thai Thanh Van" class="profile-img">
+            
+            <!-- Thông tin cá nhân -->
+            <div class="header-content">
+                <h1>Nguyen Thai Thanh Van</h1>
+                <h2>Business Data Science Student | Data Analyst Intern</h2>
+                <div class="contact-info">
+                    <a href="tel:+84938565574"><i class="fas fa-phone"></i> +84 938565574</a>
+                    <a href="mailto:vanthanhh8100@gmail.com"><i class="fas fa-envelope"></i> vanthanhh8100@gmail.com</a>
+                    <a href="https://github.com/Vannguyenn0018" target="_blank"><i class="fab fa-github"></i> GitHub Portfolio</a>
+                    <a href="https://www.linkedin.com/in/van-nguyenn/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section id="summary">
+            <h3 class="section-title">Summary</h3>
+            <p class="summary-text">
+                Third-year Business Data Science student at the University of Banking Ho Chi Minh City with a strong foundation in Python, SQL, machine learning, and data visualization. Experienced in financial and business analytics projects involving data processing, exploratory data analysis (EDA), statistical modeling, and dashboard development. Passionate about transforming data into actionable insights to support data-driven decision-making and solve real-world business problems.
+            </p>
+        </section>
+
+     <section id="skills">
+            <h3 class="section-title">Skills</h3>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4><i class="fas fa-terminal"></i> Programming & Tech</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">R</span>
+                    </div>
+                </div>
+
+                 <div class="skill-category">
+                    <h4><i class="fas fa-terminal"></i> Databases</h4>
+                    <div class="skill-tags">  
+                         <span class="skill-tag">SQL Server</span>      
+                            <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">SQLite</span>
+                   
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-project-diagram"></i> Data Analysis</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Exploratory Data Analysis (EDA)</span>
+                        <span class="skill-tag">Data Cleaning</span>
+                        <span class="skill-tag">Data Transformation</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Predictive Modeling</span>
+                        <span class="skill-tag">Data storytelling</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-chart-pie"></i> Visualization & Tools</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Plotly</span>   
+                        <span class="skill-tag">Matplotlib</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-users-cog"></i> Soft Skills</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Analytical Thinking</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">Fast Learning</span>
+                        <span class="skill-tag">Communication</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4><i class="fas fa-cogs"></i>Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Vietnamese (Native)</span>
+                        <span class="skill-tag">English (Vstep B1)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title-group">
+                        <span class="project-title">Financial Data Analysis for Banks</span>
+                        <span class="project-subtitle">G'CONTEST 2026</span>
+                    </div>
+                    <div class="project-meta-right">
+                        <span class="project-date"><i class="far fa-calendar-alt"></i> May 2026</span>
+                        <a href="#" class="project-link">View Project <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-badges">
+                    <span class="badge award-badge"><i class="fas fa-trophy"></i> Top 40 Finalist</span>
+                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python (K-Means, PCA)</span>
+                </div>
+                
+                <ul class="project-details">
+                    <li>Engineered an end-to-end financial performance model, extracting key drivers of operational efficiency from a massive dataset of 272 raw financial metrics across 27 banks.</li>
+                    <li>Isolated high-risk financial clusters by deploying machine learning algorithms (K-Means & PCA), while independently resolving complex data mapping bottlenecks to guarantee regression model accuracy.</li>
+                    <li>Optimized bank profitability strategies by developing a data-driven NIM heatmap visualization, bridging the gap between clustering outputs and practical retail lending operations.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">VN30 Market Structure Analysis</span>
+                    <a href="https://drive.google.com/file/d/1QOXQyXtLCIcrjlH0uCSQECGVon9AGLmH/view?usp=sharing" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="project-tools">Tools used: Python, Scikit-learn, Streamlit, Plotly</div>
+                <ul class="project-details">
+                    <li>Analyzed the market structure of 30 VN30 stocks to identify systemic risk factors affecting portfolio performance in the Vietnamese stock market.</li>
+                    <li>Developed a PCA model that explained 39.4% of total market volatility and identified the Banking sector as the primary driver of systematic risk.</li>
+                    <li>Built an interactive Streamlit dashboard with real-time visualization of sector rotation, market fluctuations, and cross-industry correlations to support data-driven investment decisions.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">SecureMail - End-to-End Encrypted Email Web Application</span>
+                    <a href="https://securemail-fwcl.vercel.app/login" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="project-tools">Tools used: React, TypeScript, Web Crypto API, Gmail API</div>
+                <ul class="project-details">
+                    <li>Developed a secure email web application with end-to-end encryption using AES-256-GCM and RSA-OAEP to protect email content directly in the browser without a backend server.</li>
+                    <li>Designed features for digital signature verification, secure key management, and unauthorized access prevention to enhance communication security and data integrity.</li>
+                    <li>Integrated Gmail API and Google OAuth2 for real-time email sending/receiving, while implementing automated testing with 177 test cases and CI/CD deployment using GitHub Actions.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Educational App for Children with Hearing Impairment</span>
+                    <a href="https://drive.google.com/drive/folders/1VzYUoij1u2ihnFce8iw-SXjsT7FG2-G8" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+                </div>
+                
+                   <div class="project-badges">
+                    <span class="badge award-badge"><i class="fas fa-trophy"></i> Top 1 Finalist</span>
+                    <span class="badge tool-badge"><i class="fas fa-chart-line"></i>  Figma, Excel, Product Research, Data Analysis</span>
+                </div>
+                <ul class="project-details">
+                    <li>Collaborated in developing an educational application for children with hearing impairments, focusing on improving user engagement and accessibility.</li>
+                    <li>Conducted research and user testing with over 13,000 users, transforming feedback into product features and data-driven improvements that increased engagement by 30%.</li>
+                    <li>Prepared product specifications and development roadmaps, helping the team deliver the MVP 15% ahead of schedule and achieve First Prize at Young Innovators 2025.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h3 class="section-title">Activities & Certificates</h3>
+            
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">Head of Content and Events Committee</span>
+                    <span class="timeline-date">Sep 2025 - Present</span>
+                </div>
+                <div class="timeline-subtitle">Data Science in Business Faculty Student Union, HUB</div>
+                <ul class="project-details">
+                    <li>Planned and managed content schedules for the faculty fanpage, maintaining consistent student engagement.</li>
+                    <li>Developed communication content and event scripts for internal activities, including faculty-student dialogue events.</li>
+                    <li>Coordinated with team members to assign tasks, manage event logistics, and monitor weekly progress.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">Certificates</span>
+                </div>
+                <ul class="project-details" style="margin-top: 10px;">
+                    <li><strong>Microsoft Office Specialist (MOS):</strong> Excel, Word, PowerPoint</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h3 class="section-title">Education</h3>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="timeline-title">Ho Chi Minh City University of Banking (HUB)</span>
+                    <span class="timeline-date">Sep 2023 - Present</span>
+                </div>
+                <div class="timeline-subtitle">Major: Business Data Science</div>
+                <div class="timeline-subtitle">Relevant Modules: Probability and Statistics, Database management system, Data Mining, Business Inte ligence & Data Warehousing,
+Machine Learning, Data Analysis and Visualization, Financial Data Analysis.</div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nguyen Thai Thanh Van. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
