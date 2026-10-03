@@ -3,885 +3,1951 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyen Thai Thanh Van - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Nguyen Thai Thanh Van - Business Data Science Portfolio</title>
+    
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --card-bg: #ffffff;
+            --bg-primary: #FAF7F5;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-solid: #FFFFFF;
+            --text-main: #2A2421;
+            --text-muted: #6E655F;
+            --accent-main: #C85278;
+            --accent-dark: #9E2A4B;
+            --accent-soft: rgba(200, 82, 120, 0.09);
+            --border-color: rgba(200, 82, 120, 0.18);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 12px 30px -10px rgba(160, 55, 91, 0.08);
+            --shadow-hover: 0 22px 45px -10px rgba(160, 55, 91, 0.18);
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- Header Styles (Đã cập nhật) --- */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4rem 2rem;
+        /* Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3.5px;
+            background: linear-gradient(90deg, var(--accent-main), var(--accent-dark));
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease-out;
         }
 
-        .header-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
+        /* Ambient Glow & Grid */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 12% 15%, rgba(200, 82, 120, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 88% 85%, rgba(200, 82, 120, 0.07) 0%, transparent 45%);
         }
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid #ffffff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            flex-shrink: 0;
+        .bg-grid-pattern {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(200, 82, 120, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200, 82, 120, 0.035) 1px, transparent 1px);
+            background-size: 36px 36px;
         }
 
-        .header-content {
-            text-align: left;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header h2 {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: #bdc3c7;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: flex-start;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .contact-info a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* --- Main Content Styles --- */
         .container {
-            max-width: 1000px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 24px;
         }
 
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h3.section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--secondary-color);
-            display: inline-block;
-            padding-bottom: 0.3rem;
-        }
-
-        /* Summary */
-        .summary-text {
-            font-size: 1.1rem;
-            text-align: justify;
-        }
-
-        /* Skills */
-        /* --- Đột phá khu vực Skills --- */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #eef2f5;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Spotlight Interactive Hover Card */
+        .spotlight-card {
             position: relative;
             overflow: hidden;
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, -200px);
+            left: var(--mouse-x, -200px);
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(200, 82, 120, 0.12) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             z-index: 1;
         }
 
-        /* Hiệu ứng vệt sáng lướt qua thẻ */
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.1), transparent);
-            transform: skewX(-20deg);
-            transition: 0.7s;
-            z-index: -1;
+        .spotlight-card:hover::before {
+            opacity: 1;
         }
 
-        .skill-category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.15);
-            border-color: rgba(52, 152, 219, 0.3);
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1120px;
+            background: rgba(250, 247, 245, 0.88);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            padding: 10px 28px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
         }
 
-        .skill-category:hover::before {
-            left: 150%;
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.18rem;
+            color: var(--accent-dark);
+            text-decoration: none;
         }
 
-        .skill-category h4 {
-            color: var(--primary-color);
-            margin-bottom: 1.2rem;
-            font-size: 1.2rem;
+        .logo span {
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-right-cluster {
             display: flex;
             align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-main);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-main);
+        }
+
+        /* Language Toggle Pill */
+        .lang-switch-wrap {
+            display: inline-flex;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 3px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .lang-btn.active {
+            background: var(--accent-main);
+            color: white;
+            box-shadow: 0 2px 8px rgba(200, 82, 120, 0.3);
+        }
+
+        /* Hero Layout */
+        header.hero {
+            padding-top: 135px;
+            padding-bottom: 45px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-soft);
+            color: var(--accent-dark);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+            animation: pulseSoft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseSoft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            color: var(--accent-main);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.02rem;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+            line-height: 1.7;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            background: var(--accent-main);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(200, 82, 120, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 26px rgba(200, 82, 120, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            border-color: var(--accent-main);
+            color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero-contact-row {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-size: 0.88rem;
+        }
+
+        .hero-contact-row a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-contact-row a:hover {
+            color: var(--accent-main);
+            transform: translateX(2px);
+        }
+
+        /* Mascot Display Card */
+        .mascot-display-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .mascot-display-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mascot-frame {
+            position: relative;
+            width: 100%;
+            height: 330px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #FFEAD9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            margin-bottom: 14px;
+        }
+
+        .mascot-static-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mascot-display-card:hover .mascot-static-img {
+            transform: scale(1.03);
+        }
+
+        .mascot-speech-bubble {
+            position: absolute;
+            top: 22px;
+            left: 20px;
+            background: #FFFFFF;
+            color: #2A2421;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 7px 15px;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            border: 1px solid rgba(200, 82, 120, 0.2);
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+
+        .mascot-speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 18px;
+            width: 10px;
+            height: 10px;
+            background: #FFFFFF;
+            transform: rotate(45deg);
+            border-right: 1px solid rgba(200, 82, 120, 0.2);
+            border-bottom: 1px solid rgba(200, 82, 120, 0.2);
+        }
+
+        .mascot-display-card:hover .mascot-speech-bubble {
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--accent-main);
+        }
+
+        /* Marquee Ticker */
+        .marquee-section {
+            background: linear-gradient(90deg, #A0375B 0%, #C85278 100%);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 20px 0 50px 0;
+            box-shadow: 0 10px 22px rgba(160, 55, 91, 0.15);
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marqueeScroll 32s linear infinite;
+        }
+
+        .marquee-section:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        .marquee-chip {
+            display: inline-flex;
+            align-items: center;
             gap: 10px;
+            padding: 4px 18px;
+            margin-right: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 30px;
+            font-size: 0.84rem;
+            font-weight: 500;
         }
 
-        .skill-category h4 i {
-            color: var(--secondary-color);
-            font-size: 1.4rem;
+        .marquee-chip strong {
+            color: #FFF275;
+            font-weight: 700;
         }
 
-        .skill-tags {
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Headings & Section Styling */
+        section {
+            margin-bottom: 70px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+        }
+
+        .section-subtitle {
+            color: var(--accent-dark);
+            font-weight: 700;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--text-main);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            font-size: 1.02rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Executive KPI Deck */
+        .impact-deck {
+            background: var(--card-solid);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .impact-deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 18px;
+        }
+
+        .deck-title-group h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: var(--text-main);
+        }
+
+        .deck-title-group p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .case-switcher {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-primary);
+            padding: 5px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-switcher {
+            background: transparent;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-switcher.active {
+            background: var(--accent-main);
+            color: white;
+            box-shadow: 0 4px 12px rgba(200, 82, 120, 0.25);
+        }
+
+        .kpi-metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            text-align: left;
+            transition: var(--transition-smooth);
+        }
+
+        .kpi-card:hover {
+            border-color: var(--accent-main);
+            background: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        .kpi-card .kpi-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-card .kpi-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+            margin: 4px 0;
+            display: inline-block;
+        }
+
+        .kpi-card .kpi-context {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .deck-insight-box {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent-main);
+            padding: 14px 18px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.88rem;
+            color: var(--text-main);
+            transition: var(--transition-smooth);
+        }
+
+        /* Bento Grid Skills */
+        .capabilities-bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 18px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-main);
+            background: #FFFFFF;
+            transform: translateY(-4px);
+        }
+
+        .bento-1 { grid-column: span 7; }
+        .bento-2 { grid-column: span 5; }
+        .bento-3 { grid-column: span 5; }
+        .bento-4 { grid-column: span 7; }
+
+        .bento-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .bento-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--accent-soft);
+            color: var(--accent-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: var(--transition-smooth);
+        }
+
+        .bento-card:hover .bento-icon {
+            background: var(--accent-main);
+            color: white;
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        .bento-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .tech-pill-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 8px;
         }
 
-        .skill-tag {
-            background: #f0f4f8;
-            color: #4a5568;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
+        .tech-pill {
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.82rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            cursor: default;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
         }
 
-        /* Thẻ tag nảy lên và đổi màu */
-        .skill-tag:hover {
-            transform: scale(1.1) translateY(-3px);
-            background: var(--secondary-color);
+        .tech-pill i { color: var(--accent-main); }
+
+        .tech-pill:hover {
+            background: var(--accent-main);
             color: white;
-            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
+            border-color: var(--accent-main);
+            transform: translateY(-2px);
         }
 
-        /* Đảm bảo vẫn đẹp trên điện thoại */
-        @media (max-width: 768px) {
-            .skills-container {
-                grid-template-columns: 1fr;
-            }
+        .tech-pill:hover i { color: white; }
+
+        /* Projects Section */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
 
-        /* Projects */
-        /* --- Đột phá khu vực Projects --- */
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 7px 18px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-main);
+            color: white;
+            border-color: var(--accent-main);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
         .project-card {
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            border-left: 5px solid var(--secondary-color);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-main);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
+            box-shadow: var(--shadow-hover);
+            background: #FFFFFF;
         }
 
-        /* Phân bổ tiêu đề và thời gian/link */
         .project-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1rem;
-            border-bottom: 1px dashed #e1e8ed;
-            padding-bottom: 1rem;
-        }
-
-        .project-title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
         }
 
         .project-title {
-            font-size: 1.4rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--primary-color);
+            line-height: 1.3;
+            color: var(--text-main);
         }
 
         .project-subtitle {
-            font-size: 1.05rem;
-            color: #7f8c8d;
-            font-weight: 500;
-        }
-
-        .project-meta-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.8rem;
-        }
-
-        /* Khối thời gian */
-        .project-date {
-            font-size: 0.85rem;
-            color: #636e72;
-            background: #f1f2f6;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--accent-dark);
             font-weight: 600;
+            margin-top: 3px;
         }
 
-        .project-link {
-            color: var(--secondary-color);
-            text-decoration: none;
+        .project-date {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .project-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 5px;
         }
 
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Huy hiệu thành tích & Công cụ */
-        .project-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .badge {
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
         .award-badge {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
+            background: #FFF8E7;
+            color: #8C6200;
+            border: 1px solid #FFE7A3;
         }
 
         .tool-badge {
-            background: #e1ecf4;
-            color: #39739d;
+            background: var(--accent-soft);
+            color: var(--accent-dark);
+            border: 1px solid var(--border-color);
         }
 
-        /* Custom Bullets (Mũi tên thay cho dấu chấm) */
         .project-details {
-            list-style: none; /* Bỏ dấu chấm mặc định */
-            margin-left: 0;
-            padding-left: 0;
+            list-style: none;
+            margin-bottom: 16px;
         }
 
         .project-details li {
             position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: #4a5568;
-            line-height: 1.7;
+            padding-left: 16px;
+            margin-bottom: 6px;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            line-height: 1.55;
         }
 
         .project-details li::before {
-            content: '\f105'; /* Mã icon mũi tên của FontAwesome */
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
+            content: '✦';
             position: absolute;
             left: 0;
-            top: 2px;
-            color: var(--secondary-color);
-            font-size: 1.1rem;
+            color: var(--accent-main);
+            font-size: 0.75rem;
         }
 
-        @media (max-width: 768px) {
-            .project-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .project-meta-right {
-                align-items: flex-start;
-            }
+        .project-footer {
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: flex-end;
         }
 
-        /* --- Đột phá khu vực Activities & Certificates (Constellation Timeline) --- */
+        .project-link {
+            color: var(--accent-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .project-link:hover {
+            color: var(--accent-dark);
+            transform: translateX(4px);
+        }
+
+        /* Timeline Activities */
         .modern-timeline {
             position: relative;
-            margin: 2rem 0 2rem 1rem;
-            padding-left: 2.5rem;
-            border-left: 2px solid rgba(52, 152, 219, 0.2); /* Sợi dây liên kết */
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+            margin-left: 0.6rem;
         }
 
         .timeline-item-new {
             position: relative;
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            margin-bottom: 2rem;
-            transition: all 0.4s ease;
-            border: 1px solid #eef2f5;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 24px;
+            transition: var(--transition-smooth);
         }
 
-        /* Nút điểm (Node / Star) trên trục thời gian */
         .timeline-item-new::before {
             content: '';
             position: absolute;
-            left: -3.15rem; /* Căn giữa trục dọc */
+            left: -2.62rem;
             top: 2rem;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background: var(--bg-color);
-            border: 4px solid var(--secondary-color);
-            box-shadow: 0 0 0 rgba(52, 152, 219, 0.4);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 2;
+            background: white;
+            border: 4px solid var(--accent-main);
+            box-shadow: 0 0 0 3px rgba(200, 82, 120, 0.2);
+            transition: var(--transition-smooth);
         }
 
-        /* Tia sáng nối từ nốt vào thẻ */
-        .timeline-item-new::after {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 2.5rem;
-            width: 2.5rem;
-            height: 2px;
-            background: rgba(52, 152, 219, 0.2);
-            transition: all 0.4s ease;
-            z-index: 1;
-        }
-
-        /* Hiệu ứng di chuột: Tỏa sáng & Nổi bật */
         .timeline-item-new:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.1);
-            border-color: rgba(52, 152, 219, 0.3);
+            transform: translateX(6px);
+            box-shadow: var(--shadow-hover);
+            background: #FFFFFF;
         }
 
         .timeline-item-new:hover::before {
-            background: var(--secondary-color);
-            box-shadow: 0 0 15px var(--secondary-color), 0 0 30px var(--secondary-color);
+            background: var(--accent-main);
             transform: scale(1.2);
         }
 
-        .timeline-item-new:hover::after {
-            background: var(--secondary-color);
-        }
-
-        .activity-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-        }
-
-        .activity-subtitle {
-            font-size: 1rem;
-            color: var(--secondary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .activity-date {
-            position: absolute;
-            right: 2rem;
-            top: 2rem;
-            font-size: 0.85rem;
-            color: #636e72;
-            background: #f1f2f6;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .modern-timeline {
-                border-left: none;
-                padding-left: 0;
-                margin-left: 0;
-            }
-            .timeline-item-new::before, .timeline-item-new::after {
-                display: none; /* Ẩn trục dọc trên điện thoại cho gọn */
-            }
-            .activity-date {
-                position: static;
-                display: inline-block;
-                margin-bottom: 1rem;
-            }
-        }
-
-        /* Experience & Education */
-        .timeline-item {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-header {
+        .act-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.1rem;
+            align-items: flex-start;
+            margin-bottom: 4px;
         }
 
-        .timeline-date {
-            color: #888;
-            font-size: 0.9rem;
+        .act-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
 
-        .timeline-subtitle {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
+        .act-date {
+            font-size: 0.78rem;
+            color: var(--accent-dark);
+            background: var(--accent-soft);
+            border: 1px solid var(--border-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
+        .act-sub {
+            font-size: 0.88rem;
+            color: var(--accent-dark);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
         footer {
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0 35px;
             text-align: center;
-            padding: 2rem;
-            background: var(--primary-color);
-            color: white;
-            margin-top: 2rem;
         }
 
-        /* --- Responsive Design (Điện thoại) --- */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .header-content {
-                text-align: center;
-            }
-            .contact-info {
-                justify-content: center;
-            }
-            .timeline-header, .project-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .timeline-date {
-                margin-top: 0.5rem;
-            }
+        @media (max-width: 900px) {
+            nav { padding: 10px 20px; }
+            .nav-links { display: none; }
+            header.hero { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.6rem; }
+            .bento-1, .bento-2, .bento-3, .bento-4 { grid-column: span 12; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .kpi-metric-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-container">
-            <!-- Ảnh đại diện -->
-            <img src="portfolio/Profile.jpg" alt="Nguyen Thai Thanh Van" class="profile-img">
-            
-            <!-- Thông tin cá nhân -->
-            <div class="header-content">
-                <h1>Nguyen Thai Thanh Van</h1>
-                <h2>Business Data Science Student | Data Analyst Intern</h2>
-                <div class="contact-info">
-                    <a href="tel:+84938565574"><i class="fas fa-phone"></i> +84 938565574</a>
-                    <a href="mailto:vanthanhh8100@gmail.com"><i class="fas fa-envelope"></i> vanthanhh8100@gmail.com</a>
-                    <a href="https://github.com/Vannguyenn0018" target="_blank"><i class="fab fa-github"></i> GitHub Portfolio</a>
-                    <a href="https://www.linkedin.com/in/van-nguyenn/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
-                </div>
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <div class="ambient-glow"></div>
+    <div class="bg-grid-pattern"></div>
+
+    <!-- Floating Navigation with Language Switcher -->
+    <nav>
+        <a href="#" class="logo">NTTV<span>.data</span></a>
+        
+        <div class="nav-right-cluster">
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav_about">Summary</a></li>
+                <li><a href="#impact-deck" data-i18n="nav_kpis">Executive KPIs</a></li>
+                <li><a href="#skills" data-i18n="nav_skills">Competencies</a></li>
+                <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+                <li><a href="#activities" data-i18n="nav_activities">Activities</a></li>
+                <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+            </ul>
+
+            <!-- Language Pill Toggle -->
+            <div class="lang-switch-wrap">
+                <button class="lang-btn active" id="btnEN" onclick="setLanguage('en')">EN</button>
+                <button class="lang-btn" id="btnVI" onclick="setLanguage('vi')">VI</button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <div class="container">
-        
-        <section id="summary">
-            <h3 class="section-title">Summary</h3>
-            <p class="summary-text">
-            Final-year Business Data Science student at HUB with a strong hybrid background in Business Analysis and Data Analytics. Proficient in translating complex business requirements into functional specifications, optimizing operational workflows, and engineering end-to-end data pipelines (Python, SQL). Experienced in building automated executive dashboards (Power BI, Streamlit), conducting customer behavior profiling, and delivering actionable insights for decision-makers. Possesses strong cross-functional communication, process documentation, and structured problem-solving skills, eager to drive data-informed strategies and digital transformation initiatives.
-            </p>
-        </section>
-
-     <section id="skills">
-            <h3 class="section-title">Skills</h3>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h4><i class="fas fa-terminal"></i> Programming & Tech</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">R</span>
-                    </div>
+    <main class="container">
+        <!-- Hero Section -->
+        <header class="hero" id="about">
+            <div class="reveal-on-scroll">
+                <div class="hero-tag">
+                    <i class="fa-solid fa-sparkles"></i> <span data-i18n="hero_tag">Business Data Science & Analytics</span>
                 </div>
-
-                 <div class="skill-category">
-                    <h4><i class="fas fa-terminal"></i> Databases</h4>
-                    <div class="skill-tags">  
-                         <span class="skill-tag">SQL Server</span>      
-                            <span class="skill-tag">MySQL</span>
-                                <span class="skill-tag">SQLite</span>
-                   
-                    </div>
+                <h1 class="hero-title">
+                    Nguyễn Thái <span>Thanh Vân</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    Final-year Business Data Science student at HUB. Bridging commercial business requirements with technical rigor: data pipeline optimization (Polars, SQL, Kimball Star Schema), advanced customer segmentation (RFM, Churn Modeling), and executive Decision Support Systems (Power BI, Streamlit).
+                </p>
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn-primary">
+                        <span data-i18n="hero_cta_projects">Explore 10 Projects</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#impact-deck" class="btn-secondary" data-i18n="hero_cta_deck">
+                        Impact Command Deck
+                    </a>
                 </div>
-                <div class="skill-category">
-                    <h4><i class="fas fa-project-diagram"></i> Data Analysis</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Exploratory Data Analysis (EDA)</span>
-                        <span class="skill-tag">Data Cleaning</span>
-                        <span class="skill-tag">Data Transformation</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Predictive Modeling</span>
-                        <span class="skill-tag">Data storytelling</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4><i class="fas fa-chart-pie"></i> Visualization & Tools</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Visual Studio Code</span>
-                        <span class="skill-tag">SQLite</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">Excel</span>
-                        <span class="skill-tag">Looker Studio</span>
-                        <span class="skill-tag">Plotly</span>   
-                        <span class="skill-tag">Matplotlib</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4><i class="fas fa-users-cog"></i> Soft Skills</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Analytical Thinking</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Teamwork</span>
-                        <span class="skill-tag">Fast Learning</span>
-                        <span class="skill-tag">Communication</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4><i class="fas fa-cogs"></i>Languages</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Vietnamese (Native)</span>
-                        <span class="skill-tag">English (Vstep B1)</span>
-                    </div>
+                <div class="hero-contact-row">
+                    <a href="tel:+84938565574"><i class="fas fa-phone"></i> +84 938565574</a>
+                    <a href="mailto:vanthanhh8100@gmail.com"><i class="fas fa-envelope"></i> vanthanhh8100@gmail.com</a>
+                    <a href="https://github.com/Vannguyenn0018" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/van-nguyenn/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
 
+            <!-- Mascot Showcase Card -->
+            <div class="mascot-display-card reveal-on-scroll">
+                <div class="mascot-frame">
+                    <img src="Profile.jpg" alt="Mascot Image" class="mascot-static-img">
          
+                </div>
+                <div style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.18rem; color: var(--text-main);">Nguyễn Thái Thanh Vân</div>
+                <div style="font-size: 0.82rem; color: var(--accent-dark); font-weight: 600; margin-top: 2px;" data-i18n="mascot_role">Business Data Science Practitioner</div>
+            </div>
+        </header>
+    </main>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-chip"><i class="fa-solid fa-database"></i> Kimball Star Schema & DuckDB In-Memory</div>
+            <div class="marquee-chip"><i class="fa-solid fa-arrow-trend-down"></i> VDSC Churn Reduction Target: <strong>5 - 8%</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-trophy"></i> Top 40 Finalist: <strong>G'Contest & DAZONE</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-bolt"></i> Polars LazyFrame Memory Stream</div>
+            <div class="marquee-chip"><i class="fa-solid fa-shield-heart"></i> Credit Risk Random Forest Recall: <strong>90%</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-award"></i> First Prize Winner: <strong>Young Innovation 2025</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-lock"></i> Client-Side AES-256-GCM Zero-Server Encryption</div>
+            <!-- Loop duplicates -->
+            <div class="marquee-chip"><i class="fa-solid fa-database"></i> Kimball Star Schema & DuckDB In-Memory</div>
+            <div class="marquee-chip"><i class="fa-solid fa-arrow-trend-down"></i> VDSC Churn Reduction Target: <strong>5 - 8%</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-trophy"></i> Top 40 Finalist: <strong>G'Contest & DAZONE</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-bolt"></i> Polars LazyFrame Memory Stream</div>
+            <div class="marquee-chip"><i class="fa-solid fa-shield-heart"></i> Credit Risk Random Forest Recall: <strong>90%</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-award"></i> First Prize Winner: <strong>Young Innovation 2025</strong></div>
+            <div class="marquee-chip"><i class="fa-solid fa-lock"></i> Client-Side AES-256-GCM Zero-Server Encryption</div>
+        </div>
+    </div>
+
+    <main class="container">
+        
+        <!-- Summary Section -->
+        <section id="summary-section" class="reveal-on-scroll">
+            <div class="summary-card spotlight-card" data-i18n="summary_body">
+                Final-year Business Data Science student at HUB with a strong hybrid background in Business Analysis and Data Analytics. Proficient in translating complex business requirements into functional specifications, optimizing operational workflows, and engineering end-to-end data pipelines (Python, SQL). Experienced in building automated executive dashboards (Power BI, Streamlit), conducting customer behavior profiling, and delivering actionable insights for decision-makers. Possesses strong cross-functional communication, process documentation, and structured problem-solving skills, eager to drive data-informed strategies and digital transformation initiatives.
+            </div>
         </section>
-        <section id="experience">
-            <h3 class="section-title">PROJECTS</h3>
 
-                   <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">Business Health and Customer Behavior in 2025</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> Sep 2026</span>
-                        <a href="https://github.com/Vannguyenn0018/AI-Workforce-Transformation-Decision-Support-Framework" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="project-badges">
-    
-                    <span class="badge tool-badge"><i class="fas fa-chart-bar"></i>></i> Excel, Power BI </span>
-                </div>
-                
-                <ul class="project-details">
-                    <li>Analyzed Customer Retention & Churn across 889 securities clients using NAV, Tenure, RFM, and Cohort Analysis to identify high-risk customer segments and critical intervention points throughout the customer lifecycle.</li>
-                    <li>Identified an overall 10.16% churn rate, with churn reaching 50.31% among clients with NAV below VND 10 million, while retention dropped from 100% to ~25% after the first month, highlighting early-stage activation as the key retention challenge.</li>
-                    <li>Translated findings into a targeted Activation–Retention–High-Value Customer Management strategy, aiming to reduce churn by 5–8% among priority segments and improve the efficiency of customer retention resource allocation.</li>
-    
-                </ul>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">AI Workforce Transformation Decision Support Framework</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> June 2026</span>
-                        <a href="https://github.com/Vannguyenn0018/AI-Workforce-Transformation-Decision-Support-Framework" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-medal"></i> Final score: 10/10</span>
-                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python (LLM, Streamlit)</span>
-                </div>
-                
-                <ul class="project-details">
-                    <li>Built a data-driven Decision Support System (DSS) to prioritize AI investment and workforce transformation across 61
-occupations in Business, Finance, and Management.</li>
-                    <li>Identified occupations with high AI automation potential, led by Tax Preparers (4.22/5), Loan Officers and Management
-Analysts (3.93/5), particularly for repetitive, standardized, and rule-based tasks.</li>
-                    <li>Found the largest AI–workforce gaps in Cost Estimators (WFI +0.69) and Accountants & Auditors (+0.67), highlighting
-transition risks driven by both AI capability and workforce readiness.</li>
-                    <li>Found that high AI exposure does not necessarily imply full job replacement; effective transformation requires combining AI
-adoption with reskilling and Human-in-the-loop strategies.</li>
-                </ul>
+        <!-- Executive KPI Deck -->
+        <section id="impact-deck" class="reveal-on-scroll">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="deck_subtitle">Verified Impact Metrics</div>
+                <h2 class="section-title" data-i18n="deck_title">Executive Impact Command Deck</h2>
             </div>
 
-        <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">Financial Data Analysis for Banks</span>
-                        <span class="project-subtitle">G'CONTEST 2026</span>
+            <div class="impact-deck spotlight-card">
+                <div class="impact-deck-header">
+                    <div class="deck-title-group">
+                        <h4 id="deckCaseTitle">VDSC Securities Client Retention Model</h4>
+                        <p id="deckCaseSubtitle">Case Study: Churn risk modeling across 889 securities brokerage accounts</p>
                     </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> May 2026</span>
-                        <a href="https://drive.google.com/file/d/1Dcf2V-U199pacO_lOISc_EBid-09_Hh8/view?usp=sharing" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
+                    <div class="case-switcher">
+                        <button class="btn-switcher active" id="swVdsc" onclick="switchImpactCase('vdsc')">VDSC Securities</button>
+                        <button class="btn-switcher" id="swCredit" onclick="switchImpactCase('credit')">Fintech & Credit Risk</button>
+                        <button class="btn-switcher" id="swWorkforce" onclick="switchImpactCase('workforce')">AI Workforce DSS</button>
                     </div>
                 </div>
-                
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-trophy"></i> Top 40 Finalist</span>
-                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python (K-Means, PCA)</span>
+
+                <div class="kpi-metric-grid">
+                    <div class="kpi-card spotlight-card">
+                        <div class="kpi-label" id="kpiLabel1">Churn Reduction Target</div>
+                        <div class="kpi-value" id="kpiVal1">5 - 8%</div>
+                        <div class="kpi-context" id="kpiCtx1">In clients with NAV &lt; 10M VND</div>
+                    </div>
+                    <div class="kpi-card spotlight-card">
+                        <div class="kpi-label" id="kpiLabel2">Client Scope</div>
+                        <div class="kpi-value" id="kpiVal2">889</div>
+                        <div class="kpi-context" id="kpiCtx2">Equities & Derivatives accounts</div>
+                    </div>
+                    <div class="kpi-card spotlight-card">
+                        <div class="kpi-label" id="kpiLabel3">Month 1 Retention</div>
+                        <div class="kpi-value" id="kpiVal3">~25%</div>
+                        <div class="kpi-context" id="kpiCtx3">Pinpointed onboarding churn bottleneck</div>
+                    </div>
+                    <div class="kpi-card spotlight-card">
+                        <div class="kpi-label" id="kpiLabel4">Data Architecture</div>
+                        <div class="kpi-value" id="kpiVal4">Star Schema</div>
+                        <div class="kpi-context" id="kpiCtx4">Kimball DW optimizing DAX measures</div>
+                    </div>
                 </div>
-                
-                <ul class="project-details">
-                    <li>Engineered an end-to-end financial performance model, extracting key drivers of operational efficiency from a massive dataset of 272 raw financial metrics across 27 banks.</li>
-                    <li>Isolated high-risk financial clusters by deploying machine learning algorithms (K-Means & PCA), while independently resolving complex data mapping bottlenecks to guarantee regression model accuracy.</li>
-                    <li>Optimized bank profitability strategies by developing a data-driven NIM heatmap visualization, bridging the gap between clustering outputs and practical retail lending operations.</li>
-                </ul>
+
+                <div class="deck-insight-box" id="deckInsightText">
+                    <strong>Business Strategy:</strong> Established an early activation protocol for the first 30 days and real-time net-asset-value (NAV) volatility triggers to guide proactive client retention resource allocation.
+                </div>
             </div>
-
-             <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">VN30 Market Structure Analysis</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> Mar 2026</span>
-                    <a href="https://drive.google.com/drive/folders/1Ywr_51yVsDGwDYiI8E73VCy3YtGG6nPu?usp=drive_link" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-
-
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-user-tie"></i> Team leader - Final score: 9/10</span>
-                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python, Scikit-learn, Streamlit, Plotly</span>
-                </div>
-
-                <ul class="project-details">
-                    <li>Analyzed the market structure of 30 VN30 stocks to identify systemic risk factors affecting portfolio performance in the Vietnamese stock market.</li>
-                    <li>Developed a PCA model that explained 39.4% of total market volatility and identified the Banking sector as the primary driver of systematic risk.</li>
-                    <li>Built an interactive Streamlit dashboard with real-time visualization of sector rotation, market fluctuations, and cross-industry correlations to support data-driven investment decisions.</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">SecureMail - End-to-End Encrypted Email Web Application</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> Mar 2026</span>
-                        <a href="https://securemail-fwcl.vercel.app/login" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-medal"></i> Final score: 10/10</span>
-                    <span class="badge tool-badge"><i class="fab fa-java"></i> React, TypeScript, JavaScript, Web Crypto API, Gmail API</span>
-                </div>
-
-                <ul class="project-details">
-                    <li>Developed a secure email web application with end-to-end encryption using AES-256-GCM and RSA-OAEP to protect email content directly in the browser without a backend server.</li>
-                    <li>Designed features for digital signature verification, secure key management, and unauthorized access prevention to enhance communication security and data integrity.</li>
-                    <li>Integrated Gmail API and Google OAuth2 for real-time email sending/receiving, while implementing automated testing with 177 test cases and CI/CD deployment using GitHub Actions.</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">Credit Risk Assessment & Fintech Business Strategy</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> July 2025</span>
-                        <a href="https://drive.google.com/drive/folders/15ex7mcuD682FN24PjyOENDdcvilR76pc?usp=drive_link" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="project-badges">
-                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python, K-Means, SHAP, BCG matrix </span>
-                </div>
-                
-                <ul class="project-details">
-                    <li>Building a credit risk model: Cleaning 50,000 loan records using Python, training a Random Forest model to achieve a 90% recall rate, helping to identify and mitigate bad debt risks early before disbursement.</li>
-                    <li>Exploring the "Hidden Gems" segment: Applying K-Means and SHAP to break down financial variables, successfully identifying potential high-income niche customers overlooked by traditional systems.</li>
-                    <li>Shaping Fintech strategy: Applying the BCG matrix to classify customers, proposing a cash-flow-based lending solution to help businesses optimize policies and expand market share.</li>
-                </ul>
-            </div>
-
-
-             <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">Customer Retention & Repeat Purchase Prediction</span>
-                        <span class="project-subtitle">DAZONE 2025</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> May 2025</span>
-                        <a href="https://drive.google.com/drive/folders/1wGkQsCxW19EOXEa1pjXvA6eJg-hqZ-G-?usp=drive_link" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-trophy"></i> Top 40 Finalist</span>
-                    <span class="badge tool-badge"><i class="fab fa-python"></i> Python</span>
-                </div>
-                
-                <ul class="project-details">
-                    <li>Develop a Binary Classification model to predict Repeat Purchases (6 months) from big data.</li>
-                    <li>Analyze customer behavior and segmentation: isolate the Deal-hunters group, identify the target group (Female, 20-40 years old).</li>
-                    <li>Identify 229,940 "gold" customers (CR > 20%), guiding the strategy for LTV growth.</li>
-                </ul>
-            </div>
-
-
-             <div class="project-card">
-                <div class="project-header">
-                    <div class="project-title-group">
-                        <span class="project-title">TWINKLEPUFF - Educational App for Children with Hearing Impairment</span>
-                        <span class="project-subtitle">"HUB students and startup ideas(2024)" & "Young Innovation(2025)"</span>
-                    </div>
-                    <div class="project-meta-right">
-                        <span class="project-date"></i> Oct 2024 - Jun 2025</span>
-                        <a href="https://drive.google.com/drive/folders/1VzYUoij1u2ihnFce8iw-SXjsT7FG2-G8" target="_blank">View Project <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="project-badges">
-                    <span class="badge award-badge"><i class="fas fa-trophy"></i> Top 1 Finalist</span>
-                    <span class="badge tool-badge"><i class="fas fa-chart-line"></i>  Figma, Excel, Product Research, Data Analysis</span>
-                </div>
-                
-                <ul class="project-details">
-                    <li>Collaborated in developing an educational application for children with hearing impairments, focusing on improving user engagement and accessibility.</li>
-                    <li>Conducted research and user testing with over 13,000 users, transforming feedback into product features and data-driven improvements that increased engagement by 30%.</li>
-                    <li>Prepared product specifications and development roadmaps, helping the team deliver the MVP 15% ahead of schedule and achieve First Prize at Young Innovators 2025.</li>
-                </ul>
-            </div>
-
-            
         </section>
-        <section id="experience">
-            <h4 class="section-title">Activities & Certificates</h4>
-            
+
+        <!-- Technical Competencies Bento Grid -->
+        <section id="skills" class="reveal-on-scroll">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="skills_subtitle">Technical Mastery</div>
+                <h2 class="section-title" data-i18n="skills_title">Technical Competencies & Stack</h2>
+            </div>
+
+            <div class="capabilities-bento">
+                <div class="bento-card bento-1 spotlight-card">
+                    <div class="bento-header">
+                        <div class="bento-icon"><i class="fa-solid fa-database"></i></div>
+                        <div class="bento-title" data-i18n="bento1_title">Data Engineering & In-Memory Systems</div>
+                    </div>
+                    <div class="tech-pill-container">
+                        <span class="tech-pill"><i class="fa-solid fa-bolt"></i> Polars LazyFrame</span>
+                        <span class="tech-pill"><i class="fa-solid fa-server"></i> DuckDB In-Memory</span>
+                        <span class="tech-pill"><i class="fa-solid fa-cubes"></i> Kimball Star Schema</span>
+                        <span class="tech-pill"><i class="fa-solid fa-code"></i> SQL (Server/MySQL/SQLite)</span>
+                        <span class="tech-pill"><i class="fa-solid fa-diagram-project"></i> ETL/ELT Pipelines</span>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-2 spotlight-card">
+                    <div class="bento-header">
+                        <div class="bento-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="bento-title" data-i18n="bento2_title">BI & Decision Support (DSS)</div>
+                    </div>
+                    <div class="tech-pill-container">
+                        <span class="tech-pill"><i class="fa-solid fa-chart-column"></i> Power BI</span>
+                        <span class="tech-pill"><i class="fa-solid fa-calculator"></i> Advanced DAX</span>
+                        <span class="tech-pill"><i class="fa-solid fa-laptop-code"></i> Streamlit Web Apps</span>
+                        <span class="tech-pill"><i class="fa-solid fa-chart-line"></i> Plotly / Seaborn</span>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-3 spotlight-card">
+                    <div class="bento-header">
+                        <div class="bento-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="bento-title" data-i18n="bento3_title">Analytics & Machine Learning</div>
+                    </div>
+                    <div class="tech-pill-container">
+                        <span class="tech-pill"><i class="fa-solid fa-users"></i> RFM Segmentation</span>
+                        <span class="tech-pill"><i class="fa-solid fa-arrows-spin"></i> Cohort Retention</span>
+                        <span class="tech-pill"><i class="fa-solid fa-circle-nodes"></i> K-Means & PCA</span>
+                        <span class="tech-pill"><i class="fa-solid fa-shield-virus"></i> SHAP Explainability</span>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-4 spotlight-card">
+                    <div class="bento-header">
+                        <div class="bento-icon"><i class="fa-solid fa-terminal"></i></div>
+                        <div class="bento-title" data-i18n="bento4_title">Development & Soft Skills</div>
+                    </div>
+                    <div class="tech-pill-container">
+                        <span class="tech-pill"><i class="fa-brands fa-python"></i> Python (Pandas/NumPy)</span>
+                        <span class="tech-pill"><i class="fa-solid fa-paper-plane"></i> FastAPI REST APIs</span>
+                        <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git / GitHub CI/CD</span>
+                        <span class="tech-pill"><i class="fa-solid fa-comments"></i> <span data-i18n="pill_storytelling">Data Storytelling</span></span>
+                        <span class="tech-pill"><i class="fa-solid fa-language"></i> <span data-i18n="pill_lang">English (VSTEP B1)</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid (10 DỰ ÁN ĐẦY ĐỦ) -->
+        <section id="projects" class="reveal-on-scroll">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="proj_subtitle">Portfolio Showcase</div>
+                <h2 class="section-title" data-i18n="proj_title">Featured Analytics & Data Science Projects</h2>
+            </div>
+
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterProjects('all')" data-i18n="filter_all">All Projects (10)</button>
+                <button class="filter-btn" onclick="filterProjects('fin-bi')" data-i18n="filter_fin">Financial Analytics & BI</button>
+                <button class="filter-btn" onclick="filterProjects('dss')" data-i18n="filter_dss">Decision Support & AI</button>
+                <button class="filter-btn" onclick="filterProjects('ml')" data-i18n="filter_ml">Machine Learning & Big Data</button>
+                <button class="filter-btn" onclick="filterProjects('product')" data-i18n="filter_prod">Product Engineering</button>
+            </div>
+
+            <div class="projects-grid" id="projectsContainer">
+                <!-- Sẽ được render động qua i18n để đồng bộ hoàn hảo 2 ngôn ngữ -->
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="reveal-on-scroll">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="act_subtitle">Leadership & Achievements</div>
+                <h2 class="section-title" data-i18n="act_title">Extracurricular Activities & Certifications</h2>
+            </div>
+
+            <div class="modern-timeline" id="activitiesContainer">
+                <!-- Render qua i18n -->
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="reveal-on-scroll">
+            <div class="section-header">
+                <div class="section-subtitle" data-i18n="edu_subtitle">Academic Background</div>
+                <h2 class="section-title" data-i18n="edu_title">Education & Training</h2>
+            </div>
+
             <div class="modern-timeline">
-                
-                <!-- Hoạt động 1 -->
-                <div class="timeline-item-new">
-                    <div class="activity-date"></i> Sep 2025 - Present</div>
-                    <div class="activity-title">Head of Content and Events Committee</div>
-                    <div class="activity-subtitle"><i class="fas fa-users"></i> Data Science in Business Faculty Student Union, HUB</div>
-                    
-                    <ul class="project-details">
-                        <li>Planned and managed content schedules for the faculty fanpage, maintaining consistent student engagement.</li>
-                        <li>Developed communication content and event scripts for internal activities, including faculty-student dialogue events.</li>
-                        <li>Coordinated with team members to assign tasks, manage event logistics, and monitor weekly progress.</li>
-                    </ul>
-                </div>
-       
-                <!-- Hoạt động 2 -->
-                <div class="timeline-item-new">
-                    <div class="activity-date"></i> Oct 2023 - Present</div>
-                    <div class="activity-title">Collaborator | Youth Union - Student Association, 
-                        Faculty of Management Information Systems, HUB</div>
-                    <div class="activity-subtitle"><i class="fas fa-users"></i> Head of Organizing Committee - "MIS SAY HI" Freshman Welcome Campaign (Aug 2024 - Sep 2024)</div>               
-                    
-                    <ul class="project-details">
-                        <li>Formulated and executed a comprehensive digital communication strategy, overseeing the content calendar, copywriting, and visual design to effectively promote the campaign.</li>
-                        <li>Spearheaded outreach initiatives that successfully attracted and onboarded over 400 prospective students into the official admission groups.</li>
-                        <li>Monitored and analyzed fanpage engagement metrics to optimize content performance and maximize campaign reach.</li>
-                    </ul>
-                </div>   
-
-                <!-- Chứng chỉ -->
-                <div class="timeline-item-new">
-                    <div class="activity-title">Certificates</div>
-                    <div class="activity-subtitle"><i class="fas fa-award"></i> Professional Qualifications</div>
-                    
-                    <ul class="project-details">
-                        <li><strong>Microsoft Office Specialist (MOS):</strong> Excel, Word, PowerPoint</li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="education">
-            <h3 class="section-title">Education</h3>
-            
-            <div class="modern-timeline">
-                <!-- Nút Học vấn -->
-                <div class="timeline-item-new">
-                    <div class="activity-date"></i> Sep 2023 - Present</div>
-                    <div class="activity-title">Ho Chi Minh City University of Banking (HUB)</div>
-                    <div class="activity-subtitle"><i class="fas fa-graduation-cap"></i> Major: Business Data Science</div>
-                    
-                    <p style="color: #4a5568; line-height: 1.7; margin-top: 1rem;">
-                        <strong>Relevant Modules:</strong> Probability and Statistics, Econometrics, Database management system, Data Mining, Business Intelligence & Data Warehousing, Machine Learning, Data Analysis and Visualization.
+                <div class="timeline-item-new spotlight-card">
+                    <div class="act-header">
+                        <div class="act-title" data-i18n="edu_school">Ho Chi Minh City University of Banking (HUB)</div>
+                        <span class="act-date">Sep 2023 - Present</span>
+                    </div>
+                    <div class="act-sub"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="edu_degree">Major: Business Data Science</span></div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-top: 8px;" data-i18n="edu_modules">
+                        <strong>Relevant Modules:</strong> Probability & Statistics, Econometrics, Database Management Systems, Data Mining, Business Intelligence & Data Warehousing, Machine Learning, Data Visualization & Decision Support Systems.
                     </p>
                 </div>
             </div>
-
         </section>
 
-    </div>
+    </main>
 
-    <footer>
-        <p>&copy; 2026 Nguyen Thai Thanh Van. All Rights Reserved.</p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container reveal-on-scroll">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 10px; color: var(--text-main);" data-i18n="footer_title">Get In Touch</h3>
+            <p style="color: var(--text-muted); margin-bottom: 22px; font-size: 0.95rem;" data-i18n="footer_sub">Open to Data Analyst / Business Analyst Intern opportunities and high-impact analytics projects.</p>
+            <a href="mailto:vanthanhh8100@gmail.com" class="btn-primary" style="margin-bottom: 25px;">
+                <i class="fa-solid fa-envelope"></i> <span data-i18n="footer_btn">Send Email</span>
+            </a>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 20px;">
+                &copy; 2026 Nguyễn Thái Thanh Vân. Business Data Science Portfolio.
+            </div>
+        </div>
     </footer>
 
+    <!-- INTERACTIVE JAVASCRIPT: i18n ENGINE + SPOTLIGHT + PROGRESS + KPI SWITCHER -->
+    <script>
+        // --- 1. Từ điển dữ liệu đa ngôn ngữ i18n ---
+        const i18n = {
+            en: {
+                nav_about: "Summary",
+                nav_kpis: "Executive KPIs",
+                nav_skills: "Competencies",
+                nav_projects: "Projects",
+                nav_activities: "Activities",
+                nav_contact: "Contact",
+                hero_tag: "Business Data Science & Analytics",
+                hero_subtitle: "Final-year Business Data Science student at HUB. Bridging commercial business requirements with technical rigor: data pipeline optimization (Polars, SQL, Kimball Star Schema), advanced customer segmentation (RFM, Churn Modeling), and executive Decision Support Systems (Power BI, Streamlit).",
+                hero_cta_projects: "Explore 10 Projects",
+                hero_cta_deck: "Impact Command Deck",
+                mascot_role: "Business Data Science Practitioner",
+                mascot_bubble_default: "brb! Exploring datasets... 📊",
+                mascot_bubbles: [
+                    "brb! Finding hidden gems in data... ✨",
+                    "Sipping tea & optimizing DAX... 🍵",
+                    "Hi there! Welcome to my data space 👋",
+                    "brb! Training models with my tiny crew 🐱🐸"
+                ],
+                summary_body: "Final-year Business Data Science student at HUB with a strong hybrid background in Business Analysis and Data Analytics. Proficient in translating complex business requirements into functional specifications, optimizing operational workflows, and engineering end-to-end data pipelines (Python, SQL). Experienced in building automated executive dashboards (Power BI, Streamlit), conducting customer behavior profiling, and delivering actionable insights for decision-makers. Possesses strong cross-functional communication, process documentation, and structured problem-solving skills, eager to drive data-informed strategies and digital transformation initiatives.",
+                deck_subtitle: "Verified Impact Metrics",
+                deck_title: "Executive Impact Command Deck",
+                sw_vdsc: "VDSC Securities",
+                sw_credit: "Fintech & Credit Risk",
+                sw_workforce: "AI Workforce DSS",
+                skills_subtitle: "Technical Mastery",
+                skills_title: "Technical Competencies & Stack",
+                bento1_title: "Data Engineering & In-Memory Systems",
+                bento2_title: "BI & Decision Support (DSS)",
+                bento3_title: "Analytics & Machine Learning",
+                bento4_title: "Development & Soft Skills",
+                pill_storytelling: "Data Storytelling",
+                pill_lang: "English (VSTEP B1)",
+                proj_subtitle: "Portfolio Showcase",
+                proj_title: "Featured Analytics & Data Science Projects",
+                filter_all: "All Projects (10)",
+                filter_fin: "Financial Analytics & BI",
+                filter_dss: "Decision Support & AI",
+                filter_ml: "Machine Learning & Big Data",
+                filter_prod: "Product Engineering",
+                view_proj: "View Case Study",
+                act_subtitle: "Leadership & Achievements",
+                act_title: "Extracurricular Activities & Certifications",
+                edu_subtitle: "Academic Background",
+                edu_title: "Education & Training",
+                edu_school: "Ho Chi Minh City University of Banking (HUB)",
+                edu_degree: "Major: Business Data Science",
+                edu_modules: "<strong>Relevant Modules:</strong> Probability & Statistics, Econometrics, Database Management Systems, Data Mining, Business Intelligence & Data Warehousing, Machine Learning, Data Visualization & Decision Support Systems.",
+                footer_title: "Get In Touch",
+                footer_sub: "Open to Data Analyst / Business Analyst Intern opportunities and high-impact analytics projects.",
+                footer_btn: "Send Email",
+
+                // 10 Projects in English
+                projects: [
+                    {
+                        cat: "fin-bi",
+                        title: "Business Health & Customer Behavior in 2025",
+                        sub: "Securities Client Lifecycle Model (VDSC)",
+                        date: "Sep 2026",
+                        badges: [{ type: "tool", text: "Power BI, Advanced DAX, RFM, Excel", icon: "fa-solid fa-chart-column" }],
+                        bullets: [
+                            "Analyzed customer retention and churn across 889 securities clients using NAV, Tenure, RFM, and Cohort Analysis.",
+                            "Identified a 10.16% overall churn rate, surging to 50.31% among clients with NAV under VND 10 million; retention dropped to ~25% after month one.",
+                            "Proposed an Activation–Retention–High-Value management strategy targeting a 5–8% churn reduction in priority segments."
+                        ],
+                        link: "https://github.com/Vannguyenn0018/Business-Health-and-Customer-Behavior-in-2025"
+                    },
+                    {
+                        cat: "dss",
+                        title: "AI Workforce Transformation Framework",
+                        sub: "Decision Support System for Workforce Upskilling",
+                        date: "June 2026",
+                        badges: [
+                            { type: "award", text: "Score: 10/10", icon: "fa-solid fa-medal" },
+                            { type: "tool", text: "Python, Streamlit, LLM, Scenario Sliders", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Built a data-driven Decision Support System (DSS) to prioritize AI investment and workforce transition across 61 occupations in Business & Finance.",
+                            "Identified repetitive occupations with highest AI automation potential (Tax Preparers 4.22/5, Loan Officers 3.93/5).",
+                            "Uncovered largest capability gap in Cost Estimators (+0.69 WFI), formulating a human-in-the-loop upskilling strategy."
+                        ],
+                        link: "https://github.com/Vannguyenn0018/AI-Workforce-Transformation-Decision-Support-Framework"
+                    },
+                    {
+                        cat: "fin-bi ml",
+                        title: "Financial Data Analysis for Banks",
+                        sub: "G'CONTEST 2026 - Top 40 Nationwide Finalist",
+                        date: "May 2026",
+                        badges: [
+                            { type: "award", text: "Top 40 Finalist", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "Python, K-Means, PCA, Scikit-learn", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Engineered an end-to-end financial performance model, extracting key drivers of operational efficiency from 272 raw financial metrics across 27 commercial banks.",
+                            "Isolated high-risk financial clusters using K-Means and PCA, resolving data mapping bottlenecks to guarantee regression accuracy.",
+                            "Optimized bank profitability strategies by developing a data-driven NIM heatmap visualization for retail lending operations."
+                        ],
+                        link: "https://drive.google.com/file/d/1Dcf2V-U199pacO_lOISc_EBid-09_Hh8/view?usp=sharing"
+                    },
+                    {
+                        cat: "fin-bi dss",
+                        title: "VN30 Market Structure Analysis",
+                        sub: "Systemic Risk & Correlation Dashboard",
+                        date: "Mar 2026",
+                        badges: [
+                            { type: "award", text: "Team Leader - Score: 9/10", icon: "fa-solid fa-user-tie" },
+                            { type: "tool", text: "Python, Streamlit, Plotly, PCA", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Analyzed the market structure of 30 VN30 stocks to isolate systemic risk factors impacting portfolio performance.",
+                            "Engineered a PCA model explaining 39.4% of total market volatility, pinpointing Banking as the primary volatility driver.",
+                            "Built an interactive Streamlit dashboard mapping live sector rotation and cross-industry correlation heatmaps."
+                        ],
+                        link: "https://github.com/Vannguyenn0018/vn30-pca-analysis"
+                    },
+                    {
+                        cat: "product",
+                        title: "SecureMail - End-to-End Encrypted Web App",
+                        sub: "Client-Side Zero-Backend Architecture",
+                        date: "Mar 2026",
+                        badges: [
+                            { type: "award", text: "Score: 10/10", icon: "fa-solid fa-medal" },
+                            { type: "tool", text: "React, TypeScript, Web Crypto API, OAuth2", icon: "fa-brands fa-react" }
+                        ],
+                        bullets: [
+                            "Developed a secure email client executing AES-256-GCM and RSA-OAEP encryption directly in client browsers without a backend server.",
+                            "Engineered digital signature verification and client-side key storage to prevent unauthorized interception.",
+                            "Integrated Gmail API & Google OAuth2, passing 177 unit tests in a GitHub Actions CI/CD pipeline."
+                        ],
+                        link: "https://securemail-fwcl.vercel.app/login"
+                    },
+                    {
+                        cat: "fin-bi ml",
+                        title: "Credit Risk Assessment & Fintech Strategy",
+                        sub: "Default Classification & Customer Archetyping",
+                        date: "July 2025",
+                        badges: [{ type: "tool", text: "Python, Random Forest, SHAP, BCG Matrix", icon: "fa-brands fa-python" }],
+                        bullets: [
+                            "Cleaned 50,000 credit records and trained a Random Forest model achieving 90% recall to identify default risks early before disbursement.",
+                            "Identified high-margin 'Hidden Gems' segments by combining K-Means with SHAP explainability.",
+                            "Proposed a cash-flow-backed micro-lending framework based on BCG matrix classification."
+                        ],
+                        link: "https://drive.google.com/drive/folders/15ex7mcuD682FN24PjyOENDdcvilR76pc?usp=drive_link"
+                    },
+                    {
+                        cat: "ml",
+                        title: "Customer Retention & Repeat Purchase Prediction",
+                        sub: "DAZONE 2025 Competition - Top 40 Finalist",
+                        date: "May 2025",
+                        badges: [
+                            { type: "award", text: "Top 40 Finalist", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "Python, Binary Classification", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Constructed a binary classification engine forecasting 6-month repeat purchase probabilities across large-scale retail datasets.",
+                            "Dissected Deal-Hunter behavior patterns, isolating high-conversion female shopper demographics (ages 20-40).",
+                            "Isolated 229,940 high-value customers with conversion rates greater than 20% to optimize marketing LTV strategies."
+                        ],
+                        link: "https://drive.google.com/drive/folders/1wGkQsCxW19EOXEa1pjXvA6eJg-hqZ-G-?usp=drive_link"
+                    },
+                    {
+                        cat: "product",
+                        title: "TWINKLEPUFF - App for Hearing Impairment",
+                        sub: "Young Innovation 2025 & HUB Startup Ideas 2024",
+                        date: "Oct 2024 - Jun 2025",
+                        badges: [
+                            { type: "award", text: "First Prize Winner", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "User Research, Figma, Product Analytics", icon: "fa-solid fa-compass" }
+                        ],
+                        bullets: [
+                            "Spearheaded user research and product testing across 13,000+ respondents, translating feedback into features that increased engagement by 30%.",
+                            "Structured functional PRDs and development roadmaps, delivering the MVP 15% ahead of timeline.",
+                            "Awarded First Prize at Young Innovators 2025 for social impact and data-grounded product design."
+                        ],
+                        link: "https://drive.google.com/drive/folders/1VzYUoij1u2ihnFce8iw-SXjsT7FG2-G8"
+                    }
+                    
+                ],
+
+                // Activities in English
+                activities: [
+                    {
+                        title: "Head of Content and Events Committee",
+                        date: "Sep 2025 - Present",
+                        sub: "Data Science in Business Faculty Student Union, HUB",
+                        icon: "fa-solid fa-users",
+                        bullets: [
+                            "Planned and managed content schedules for faculty communication channels, maintaining steady student engagement.",
+                            "Developed academic seminar agendas, workshop modules, and dialogue sessions between industry mentors and undergraduates.",
+                            "Coordinated cross-functional teams to allocate operational budgets, track deadlines, and supervise event execution."
+                        ]
+                    },
+                    {
+                        title: "Collaborator & Organizing Lead | Youth Union",
+                        date: "Oct 2023 - Present",
+                        sub: "Faculty of Management Information Systems, HUB",
+                        icon: "fa-solid fa-bullhorn",
+                        bullets: [
+                            "Head of Organizing Committee for 'MIS SAY HI' Freshman Onboarding Campaign (Aug 2024 - Sep 2024).",
+                            "Spearheaded digital outreach initiatives that attracted over 400 prospective students into official community groups.",
+                            "Tracked channel engagement analytics to optimize post scheduling and interaction rates."
+                        ]
+                    },
+                    {
+                        title: "Professional Qualifications & Certifications",
+                        date: "Verified Credentials",
+                        sub: "Global Standards & Analytical Competencies",
+                        icon: "fa-solid fa-award",
+                        bullets: [
+                            "<strong>Microsoft Office Specialist (MOS):</strong> Certified in Excel, Word, and PowerPoint.",
+                            "<strong>English Proficiency:</strong> VSTEP B1 Level Standard.",
+                            "<strong>Analytical Rigor:</strong> Advanced coursework in Star Schema, In-Memory Computing, and Statistical Inference."
+                        ]
+                    }
+                ]
+            },
+
+            vi: {
+                nav_about: "Tổng Quan",
+                nav_kpis: "Chỉ Số KPIs",
+                nav_skills: "Năng Lực",
+                nav_projects: "Dự Án",
+                nav_activities: "Hoạt Động",
+                nav_contact: "Liên Hệ",
+                hero_tag: "Khoa Học Dữ Liệu & Phân Tích Kinh Doanh",
+                hero_subtitle: "Sinh viên năm cuối ngành Khoa học Dữ liệu Kinh doanh (HUB). Định hướng kết nối bài toán kinh doanh với năng lực kỹ thuật: tối ưu luồng dữ liệu (Polars, SQL, Star Schema), phân khúc khách hàng chuyên sâu (RFM, Churn Modeling) và xây dựng hệ thống hỗ trợ ra quyết định (Power BI, Streamlit).",
+                hero_cta_projects: "Khám Phá 10 Dự Án",
+                hero_cta_deck: "Báo Cáo Tác Động",
+                mascot_role: "Chuyên viên Phân tích Dữ liệu Kinh doanh",
+                
+                
+                summary_body: "Sinh viên năm cuối ngành Khoa học Dữ liệu trong Kinh doanh tại Đại học Ngân hàng TP.HCM (HUB) với nền tảng kết hợp vững chắc giữa Phân tích Kinh doanh (BA) và Phân tích Dữ liệu (DA). Thành thạo trong việc chuyển đổi các yêu cầu kinh doanh phức tạp thành đặc tả chức năng, tối ưu hóa quy trình vận hành và xây dựng pipeline dữ liệu toàn diện (Python, SQL). Có kinh nghiệm thực chiến phát triển executive dashboard tự động (Power BI, Streamlit), phân tích chân dung hành vi khách hàng và cung cấp insight hành động cho ban lãnh đạo. Sở hữu kỹ năng giao tiếp liên phòng ban, tài liệu hóa quy trình và tư duy giải quyết vấn đề có cấu trúc.",
+                deck_subtitle: "Chỉ Số Định Lượng Thực Chiến",
+                deck_title: "Bảng Chỉ Số Tác Động & Hiệu Quả Dự Án",
+                sw_vdsc: "Chứng khoán VDSC",
+                sw_credit: "Fintech & Tín Dụng",
+                sw_workforce: "Khung Ra Quyết Định DSS",
+                skills_subtitle: "Năng Lực Chuyên Môn",
+                skills_title: "Khung Năng Lực & Kỹ Thuật Dữ Liệu",
+                bento1_title: "Kỹ Thuật Dữ Liệu & Hệ Thống In-Memory",
+                bento2_title: "Kinh Doanh Thông Minh (BI) & Hỗ Trợ Ra Quyết Định",
+                bento3_title: "Phân Tích Nâng Cao & Học Máy (ML)",
+                bento4_title: "Kỹ Thuật Lập Trình & Kỹ Năng Mềm",
+                pill_storytelling: "Kể Chuyện Bằng Dữ Liệu",
+                pill_lang: "Tiếng Anh (VSTEP B1)",
+                proj_subtitle: "Hồ Sơ Dự Án Tiêu Biểu",
+                proj_title: "Các Dự Án Phân Tích & Khoa Học Dữ Liệu",
+                filter_all: "Tất Cả Dự Án (10)",
+                filter_fin: "Phân Tích Tài Chính & BI",
+                filter_dss: "Hỗ Trợ Ra Quyết Định & AI",
+                filter_ml: "Học Máy & Dữ Liệu Lớn",
+                filter_prod: "Kỹ Thuật Sản Phẩm",
+                view_proj: "Xem Chi Tiết",
+                act_subtitle: "Khả Năng Lãnh Đạo & Thành Tích",
+                act_title: "Hoạt Động Ngoại Khóa & Chứng Chỉ",
+                edu_subtitle: "Quá Trình Đào Tạo",
+                edu_title: "Học Vấn & Quá Trình Đào Tạo",
+                edu_school: "Trường Đại học Ngân hàng TP. Hồ Chí Minh (HUB)",
+                edu_degree: "Chuyên ngành: Khoa Học Dữ Liệu Trong Kinh Doanh",
+                edu_modules: "<strong>Môn học tiêu biểu:</strong> Xác suất thống kê, Kinh tế lượng, Hệ quản trị cơ sở dữ liệu, Khai phá dữ liệu (Data Mining), Kho dữ liệu & Kinh doanh thông minh (BI & Data Warehousing), Học máy (Machine Learning), Trực quan hóa dữ liệu & Hệ thống hỗ trợ ra quyết định (DSS).",
+                footer_title: "Kết Nối Hợp Tác Chuyên Môn",
+                footer_sub: "Sẵn sàng thảo luận các vị trí Data Analyst / Business Analyst Intern hoặc các bài toán phân tích thực chiến.",
+                footer_btn: "Gửi Email Trực Tiếp",
+
+                // 10 Projects in Vietnamese
+                projects: [
+                    {
+                        cat: "fin-bi",
+                        title: "Sức Khỏe Doanh Nghiệp & Hành Vi Khách Hàng 2025",
+                        sub: "Mô Hình Vòng Đời Khách Hàng Công Ty Chứng Khoán (VDSC)",
+                        date: "Tháng 09/2026",
+                        badges: [{ type: "tool", text: "Power BI, Advanced DAX, RFM, Excel", icon: "fa-solid fa-chart-column" }],
+                        bullets: [
+                            "Phân tích giữ chân và rời bỏ trên 889 khách hàng chứng khoán bằng NAV, Tenure, RFM và Cohort Analysis để nhận diện các điểm rơi then chốt.",
+                            "Xác định tỷ lệ churn chung 10.16%, chạm mức 50.31% ở nhóm NAV dưới 10 triệu VND; tỷ lệ giữ chân giảm còn ~25% sau tháng đầu tiên.",
+                            "Đề xuất chiến lược Kích hoạt - Giữ chân - Chăm sóc nhóm NAV cao, hướng tới giảm 5-8% churn ở nhóm khách hàng ưu tiên."
+                        ],
+                        link: "https://github.com/Vannguyenn0018/Business-Health-and-Customer-Behavior-in-2025"
+                    },
+                    {
+                        cat: "dss",
+                        title: "Khung Hỗ Trợ Ra Quyết Định Chuyển Đổi Nhân Lực AI",
+                        sub: "Hệ Thống Ra Quyết Định Đào Tạo Lại Kỹ Năng Nhân Lực",
+                        date: "Tháng 06/2026",
+                        badges: [
+                            { type: "award", text: "Điểm Tuyệt Đối: 10/10", icon: "fa-solid fa-medal" },
+                            { type: "tool", text: "Python, Streamlit, LLM, Scenario Sliders", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Xây dựng Decision Support System (DSS) dựa trên dữ liệu giúp ưu tiên đầu tư AI và chuyển đổi lao động cho 61 ngành nghề Tài chính - Kinh doanh.",
+                            "Định vị các nghề có khả năng tự động hóa cao nhất (Tax Preparers 4.22/5, Loan Officers 3.93/5) ở các tác vụ chuẩn hóa, lặp lại.",
+                            "Phát hiện khoảng cách sẵn sàng lớn nhất ở Cost Estimators (+0.69 WFI), đề xuất giải pháp đào tạo Human-in-the-loop."
+                        ],
+                        link: "https://github.com/Vannguyenn0018/AI-Workforce-Transformation-Decision-Support-Framework"
+                    },
+                    {
+                        cat: "fin-bi ml",
+                        title: "Phân Tích Dữ Liệu Tài Chính Ngân Hàng",
+                        sub: "G'CONTEST 2026 - Top 40 Toàn Quốc",
+                        date: "Tháng 05/2026",
+                        badges: [
+                            { type: "award", text: "Top 40 Toàn Quốc", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "Python, K-Means, PCA, Scikit-learn", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Xây dựng mô hình hiệu quả tài chính end-to-end, trích xuất động lực vận hành từ 272 chỉ số trên 27 ngân hàng thương mại.",
+                            "Phân cụm rủi ro tài chính bằng thuật toán K-Means & PCA, gỡ nút thắt ánh xạ dữ liệu phức tạp đảm bảo độ tin cậy hồi quy.",
+                            "Tối ưu hóa chiến lược NIM bằng trực quan hóa heatmap ma trận, kết nối phân cụm với thực tiễn cho vay bán lẻ."
+                        ],
+                        link: "https://drive.google.com/file/d/1Dcf2V-U199pacO_lOISc_EBid-09_Hh8/view?usp=sharing"
+                    },
+                    {
+                        cat: "fin-bi dss",
+                        title: "Phân Tích Cấu Trúc Rủi Ro Thị Trường VN30",
+                        sub: "Dashboard Đánh Giá Rủi Ro Hệ Thống & Tương Quan",
+                        date: "Tháng 03/2026",
+                        badges: [
+                            { type: "award", text: "Nhóm Trưởng - Điểm: 9/10", icon: "fa-solid fa-user-tie" },
+                            { type: "tool", text: "Python, Streamlit, Plotly, PCA", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Phân tích cấu trúc 30 mã VN30 nhằm cô lập các yếu tố rủi ro hệ thống ảnh hưởng đến danh mục đầu tư chứng khoán.",
+                            "Xây dựng mô hình PCA giải thích 39.4% biến động thị trường và xác định Ngân hàng là nhóm ngành chủ chốt chi phối rủi ro.",
+                            "Phát triển dashboard Streamlit theo dõi luân chuyển dòng tiền ngành và ma trận tương quan hỗ trợ ra quyết định đầu tư."
+                        ],
+                        link: "https://drive.google.com/drive/folders/1Ywr_51yVsDGwDYiI8E73VCy3YtGG6nPu?usp=drive_link"
+                    },
+                    {
+                        cat: "product",
+                        title: "SecureMail - Ứng Dụng Email Mã Hóa Đầu Cuối",
+                        sub: "Kiến Trúc Client-Side Trực Tiếp Không Qua Backend",
+                        date: "Tháng 03/2026",
+                        badges: [
+                            { type: "award", text: "Điểm Tuyệt Đối: 10/10", icon: "fa-solid fa-medal" },
+                            { type: "tool", text: "React, TypeScript, Web Crypto API, OAuth2", icon: "fa-brands fa-react" }
+                        ],
+                        bullets: [
+                            "Phát triển ứng dụng web gửi email bảo mật với mã hóa đầu cuối bằng AES-256-GCM và RSA-OAEP trực tiếp trên trình duyệt.",
+                            "Thiết kế cơ chế xác minh chữ ký số, quản lý khóa bảo mật phía client và ngăn chặn truy cập trái phép.",
+                            "Tích hợp Gmail API & Google OAuth2, vượt qua 177 bài kiểm thử tự động với quy trình CI/CD GitHub Actions."
+                        ],
+                        link: "https://securemail-fwcl.vercel.app/login"
+                    },
+                    {
+                        cat: "fin-bi ml",
+                        title: "Thẩm Định Rủi Ro Tín Dụng & Chiến Lược Fintech",
+                        sub: "Phân Loại Nợ Xấu & Tìm Kiếm Phân Khúc Tiềm Năng",
+                        date: "Tháng 07/2025",
+                        badges: [{ type: "tool", text: "Python, Random Forest, SHAP, BCG Matrix", icon: "fa-brands fa-python" }],
+                        bullets: [
+                            "Làm sạch 50,000 bản ghi tín dụng và huấn luyện mô hình Random Forest đạt độ nhạy (Recall) 90% nhận diện rủi ro nợ xấu sớm trước giải ngân.",
+                            "Áp dụng K-Means và SHAP bóc tách biến tài chính, phát hiện nhóm khách hàng ngách 'Hidden Gems' có tiềm năng thu nhập cao.",
+                            "Phân nhóm khách hàng theo ma trận BCG, đề xuất giải pháp cho vay dựa trên dòng tiền giao dịch thực tế."
+                        ],
+                        link: "https://drive.google.com/drive/folders/15ex7mcuD682FN24PjyOENDdcvilR76pc?usp=drive_link"
+                    },
+                    {
+                        cat: "ml",
+                        title: "Dự Báo Mua Lại & Giữ Chân Khách Hàng",
+                        sub: "Cuộc Thi DAZONE 2025 - Top 40 Toàn Quốc",
+                        date: "Tháng 05/2025",
+                        badges: [
+                            { type: "award", text: "Top 40 Toàn Quốc", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "Python, Binary Classification", icon: "fa-brands fa-python" }
+                        ],
+                        bullets: [
+                            "Xây dựng mô hình phân loại nhị phân dự báo hành vi mua lại trong 6 tháng từ cơ sở dữ liệu bán lẻ quy mô lớn.",
+                            "Phân tích hành vi Deal-hunter, nhận diện phân khúc mục tiêu chủ lực (nữ giới, độ tuổi 20-40).",
+                            "Định danh 229,940 khách hàng trọng điểm có tỷ lệ chuyển đổi trên 20%, định hướng chiến lược tăng trưởng LTV."
+                        ],
+                        link: "https://drive.google.com/drive/folders/1wGkQsCxW19EOXEa1pjXvA6eJg-hqZ-G-?usp=drive_link"
+                    },
+                    {
+                        cat: "product",
+                        title: "TWINKLEPUFF - Ứng Dụng Cho Trẻ Khiếm Thính",
+                        sub: "Young Innovation 2025 & HUB Startup Ideas 2024",
+                        date: "10/2024 - 06/2025",
+                        badges: [
+                            { type: "award", text: "Quán Quân - Top 1 Chung Cuộc", icon: "fa-solid fa-trophy" },
+                            { type: "tool", text: "User Research, Figma, Product Analytics", icon: "fa-solid fa-compass" }
+                        ],
+                        bullets: [
+                            "Nghiên cứu và thử nghiệm người dùng trên hơn 13,000 đối tượng, chuyển đổi phản hồi thành tính năng giúp tăng 30% tương tác.",
+                            "Lập đặc tả sản phẩm (PRD) và lộ trình phát triển, giúp nhóm bàn giao MVP sớm hơn 15% so với tiến độ.",
+                            "Đoạt Quán quân cuộc thi Ý tưởng Khởi nghiệp Đổi mới Sáng tạo Trẻ (Young Innovators 2025)."
+                        ],
+                        link: "https://drive.google.com/drive/folders/1VzYUoij1u2ihnFce8iw-SXjsT7FG2-G8"
+                    },
+                    
+                ],
+
+                // Activities in Vietnamese
+                activities: [
+                    {
+                        title: "Trưởng Ban Nội Dung & Sự Kiện",
+                        date: "09/2025 - Hiện tại",
+                        sub: "Đoàn - Hội Khoa Khoa Học Dữ Liệu Trong Kinh Doanh (HUB)",
+                        icon: "fa-solid fa-users",
+                        bullets: [
+                            "Lập kế hoạch và quản lý nội dung các chuỗi sự kiện học thuật, workshop kỹ năng dữ liệu và chương trình đối thoại khoa.",
+                            "Định hướng chuyên môn nội dung truyền thông, duy trì sự tương tác ổn định của cộng đồng sinh viên.",
+                            "Điều phối nhân sự ban sự kiện, quản lý tiến độ và ngân sách vận hành chương trình thực tế."
+                        ]
+                    },
+                    {
+                        title: "Cộng Tác Viên & Trưởng BTC Chiến Dịch 'MIS SAY HI'",
+                        date: "10/2023 - Hiện tại",
+                        sub: "Đoàn - Hội Khoa Hệ Thống Thông Tin Quản Lý (HUB)",
+                        icon: "fa-solid fa-bullhorn",
+                        bullets: [
+                            "Trưởng Ban Tổ chức Chiến dịch Chào đón Tân sinh viên 'MIS SAY HI' (Tháng 08/2024 - 09/2024).",
+                            "Thiết lập và triển khai chiến lược truyền thông số, thu hút hơn 400 sinh viên tham gia vào các nhóm học thuật chính thức.",
+                            "Đo lường các chỉ số tương tác fanpage hàng tuần để tinh chỉnh định dạng bài đăng và tối ưu tầm tiếp cận."
+                        ]
+                    },
+                    {
+                        title: "Chứng Chỉ Chuyên Môn & Năng Lực Chuẩn Hóa",
+                        date: "Chứng Chỉ Xác Thực",
+                        sub: "Tiêu Chuẩn Quốc Tế & Kỹ Năng Phân Tích",
+                        icon: "fa-solid fa-award",
+                        bullets: [
+                            "<strong>Microsoft Office Specialist (MOS):</strong> Chứng nhận cấp quốc tế về Excel, Word, PowerPoint.",
+                            "<strong>Năng Lực Tiếng Anh:</strong> Chứng chỉ VSTEP B1 (đọc hiểu tài liệu chuyên ngành dữ liệu thành thạo).",
+                            "<strong>Nền Tảng Dữ Liệu:</strong> Hoàn thành xuất sắc các đồ án thực tế về Star Schema, Polars In-Memory và Scikit-Learn."
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // --- 2. Bộ dữ liệu cho Executive KPI Deck (EN & VI) ---
+        const impactDataMultiLang = {
+            en: {
+                vdsc: {
+                    title: "VDSC Securities Client Retention Model",
+                    subtitle: "Case Study: Churn risk modeling across 889 securities brokerage accounts",
+                    kpis: [
+                        { label: "Churn Reduction Target", val: "5 - 8%", ctx: "In clients with NAV < 10M VND" },
+                        { label: "Client Scope", val: "889", ctx: "Equities & Derivatives accounts" },
+                        { label: "Month 1 Retention", val: "~25%", ctx: "Pinpointed onboarding churn bottleneck" },
+                        { label: "Data Architecture", val: "Star Schema", ctx: "Kimball DW optimizing DAX measures" }
+                    ],
+                    insight: "<strong>Business Strategy:</strong> Established an early activation protocol for the first 30 days and real-time net-asset-value (NAV) volatility triggers to guide proactive client retention resource allocation."
+                },
+                credit: {
+                    title: "Fintech Credit Risk & Default Prediction",
+                    subtitle: "Case Study: Underwriting default assessment on 50,000 credit records",
+                    kpis: [
+                        { label: "Model Recall", val: "90%", ctx: "Early detection of high-risk loans" },
+                        { label: "Data Scope", val: "50,000", ctx: "Processed & engineered in Python" },
+                        { label: "Core Model", val: "Random Forest", ctx: "Explained with SHAP feature impact" },
+                        { label: "Market Segment", val: "Hidden Gems", ctx: "Classified via BCG Growth Matrix" }
+                    ],
+                    insight: "<strong>Business Strategy:</strong> Recommended cash-flow-backed micro-lending for overlooked high-income 'Hidden Gems', expanding loan portfolio yield while maintaining strict risk boundaries."
+                },
+                workforce: {
+                    title: "AI Workforce Transformation Decision Support System",
+                    subtitle: "Case Study: DSS framework prioritizing upskilling across 61 occupations",
+                    kpis: [
+                        { label: "Evaluation Score", val: "10 / 10", ctx: "Departmental Capstone Excellence" },
+                        { label: "Occupation Scope", val: "61 Roles", ctx: "Finance, Management & Commerce" },
+                        { label: "Max Readiness Gap", val: "+0.69 WFI", ctx: "Identified in Cost Estimators" },
+                        { label: "Deployment Engine", val: "Streamlit DSS", ctx: "Real-time scenario simulation sliders" }
+                    ],
+                    insight: "<strong>Business Strategy:</strong> Concluded that AI automation does not imply abrupt head-count reduction; prioritized training budgets toward Human-in-the-loop workflows for essential analytical roles."
+                }
+            },
+            vi: {
+                vdsc: {
+                    title: "VDSC Securities Client Retention Model",
+                    subtitle: "Case Study: Phân tích hành vi & nguy cơ rời bỏ dịch vụ của 889 khách hàng chứng khoán",
+                    kpis: [
+                        { label: "Mục Tiêu Giảm Churn", val: "5 - 8%", ctx: "Tại nhóm NAV < 10M VND" },
+                        { label: "Quy Mô Khách Hàng", val: "889", ctx: "Tài khoản phái sinh/cổ phiếu" },
+                        { label: "Giữ Chân Sau Tháng 1", val: "~25%", ctx: "Xác định điểm nghẽn Onboarding" },
+                        { label: "Mô Hình Dữ Liệu", val: "Star Schema", ctx: "Chuẩn Kimball tối ưu tính DAX" }
+                    ],
+                    insight: "<strong>Chiến lược đề xuất:</strong> Xây dựng cơ chế kích hoạt (Activation) sớm trong 30 ngày đầu tiên và cảnh báo sớm biến động số dư tài sản ròng (NAV), định hướng phân bổ lại ngân sách chăm sóc tài khoản."
+                },
+                credit: {
+                    title: "Fintech Credit Risk & Default Prediction",
+                    subtitle: "Case Study: Thẩm định rủi ro và tìm kiếm phân khúc tiềm năng trên 50,000 hồ sơ vay",
+                    kpis: [
+                        { label: "Độ Nhạy (Recall)", val: "90%", ctx: "Phát hiện sớm rủi ro nợ xấu" },
+                        { label: "Hồ Sơ Tín Dụng", val: "50,000", ctx: "Xử lý & làm sạch bằng Python" },
+                        { label: "Mô Hình Tối Ưu", val: "Random Forest", ctx: "Kết hợp giải thích qua SHAP" },
+                        { label: "Phân Khúc Tiềm Năng", val: "Hidden Gems", ctx: "Phân nhóm theo ma trận BCG" }
+                    ],
+                    insight: "<strong>Chiến lược đề xuất:</strong> Áp dụng mô hình cho vay tín chấp vi mô dựa trên dòng tiền giao dịch thực tế cho nhóm 'Hidden Gems', mở rộng biên lợi nhuận mà vẫn kiểm soát chặt chẽ tỷ lệ nợ xấu."
+                },
+                workforce: {
+                    title: "AI Workforce Transformation Decision Support System",
+                    subtitle: "Case Study: Khung hỗ trợ ra quyết định phân bổ ngân sách đào tạo cho 61 ngành nghề",
+                    kpis: [
+                        { label: "Điểm Đánh Giá", val: "10 / 10", ctx: "Đồ án xuất sắc cấp khoa" },
+                        { label: "Ngành Phân Tích", val: "61 Ngành", ctx: "Khối Tài chính & Kinh doanh" },
+                        { label: "Khoảng Cách Kỹ Năng", val: "+0.69 WFI", ctx: "Lớn nhất ở nhóm Dự toán viên" },
+                        { label: "Kiến Trúc Triển Khai", val: "Streamlit DSS", ctx: "Tương tác Slider kịch bản thời gian thực" }
+                    ],
+                    insight: "<strong>Chiến lược đề xuất:</strong> Khẳng định tự động hóa AI không đồng nghĩa với cắt giảm hoàn toàn nhân sự; ưu tiên phân bổ ngân sách Upskilling và tích hợp giải pháp Human-in-the-loop đối với các vị trí trọng yếu."
+                }
+            }
+        };
+
+        let currentLang = localStorage.getItem('site_lang') || 'en';
+        let currentImpactCase = 'vdsc';
+
+        // --- 3. Hàm kích hoạt chuyển đổi ngôn ngữ ---
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('site_lang', lang);
+
+            // Cập nhật trạng thái nút bấm Toggle
+            document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+            document.getElementById('btnVI').classList.toggle('active', lang === 'vi');
+
+            // Cập nhật text tĩnh
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+
+            // Cập nhật tên các nút Switcher của KPI Deck
+            document.getElementById('swVdsc').textContent = i18n[lang].sw_vdsc;
+            document.getElementById('swCredit').textContent = i18n[lang].sw_credit;
+            document.getElementById('swWorkforce').textContent = i18n[lang].sw_workforce;
+
+            // Render lại 10 Dự Án & Timeline Hoạt Động
+            renderProjects();
+            renderActivities();
+
+            // Cập nhật KPI Deck
+            updateDeckDisplay(currentImpactCase);
+
+            // Đổi bong bóng thoại mascot theo ngôn ngữ
+            document.getElementById('mascotBubble').textContent = i18n[lang].mascot_bubble_default;
+        }
+
+        // Render Dự Án
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            const data = i18n[currentLang].projects;
+            const viewText = i18n[currentLang].view_proj;
+
+            container.innerHTML = data.map(p => `
+                <div class="project-card spotlight-card is-visible" data-cat="${p.cat}">
+                    <div>
+                        <div class="project-header">
+                            <div>
+                                <h4 class="project-title">${p.title}</h4>
+                                <div class="project-subtitle">${p.sub}</div>
+                            </div>
+                            <span class="project-date">${p.date}</span>
+                        </div>
+                        <div class="project-badges">
+                            ${p.badges.map(b => `
+                                <span class="badge ${b.type === 'award' ? 'award-badge' : 'tool-badge'}">
+                                    <i class="${b.icon}"></i> ${b.text}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <ul class="project-details">
+                            ${p.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="project-footer">
+                        <a href="${p.link}" target="_blank" class="project-link">
+                            ${viewText} <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+
+            // Kích hoạt lại Spotlight Mouse Event cho các thẻ mới
+            initSpotlight();
+        }
+
+        // Render Hoạt Động
+        function renderActivities() {
+            const container = document.getElementById('activitiesContainer');
+            const data = i18n[currentLang].activities;
+
+            container.innerHTML = data.map(act => `
+                <div class="timeline-item-new spotlight-card">
+                    <div class="act-header">
+                        <div class="act-title">${act.title}</div>
+                        <span class="act-date">${act.date}</span>
+                    </div>
+                    <div class="act-sub"><i class="${act.icon}"></i> ${act.sub}</div>
+                    <ul class="project-details">
+                        ${act.bullets.map(b => `<li>${b}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            initSpotlight();
+        }
+
+        // --- 4. Logic Executive KPI Deck ---
+        function switchImpactCase(key) {
+            currentImpactCase = key;
+            const buttons = document.querySelectorAll('.btn-switcher');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const deck = document.querySelector('.impact-deck');
+            deck.style.opacity = '0.5';
+            deck.style.transition = 'opacity 0.2s ease';
+
+            setTimeout(() => {
+                updateDeckDisplay(key);
+                deck.style.opacity = '1';
+            }, 180);
+        }
+
+        function updateDeckDisplay(key) {
+            const data = impactDataMultiLang[currentLang][key];
+            if (!data) return;
+
+            document.getElementById('deckCaseTitle').textContent = data.title;
+            document.getElementById('deckCaseSubtitle').textContent = data.subtitle;
+
+            for (let i = 0; i < 4; i++) {
+                document.getElementById(`kpiLabel${i+1}`).textContent = data.kpis[i].label;
+                document.getElementById(`kpiVal${i+1}`).textContent = data.kpis[i].val;
+                document.getElementById(`kpiCtx${i+1}`).textContent = data.kpis[i].ctx;
+            }
+
+            document.getElementById('deckInsightText').innerHTML = data.insight;
+        }
+
+        // --- 5. Spotlight Effect & UI Motion Helpers ---
+        function initSpotlight() {
+            document.querySelectorAll('.spotlight-card').forEach(card => {
+                card.onmousemove = (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                };
+            });
+        }
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+        });
+
+        // Filter Projects
+        function filterProjects(cat) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cardCats = card.getAttribute('data-cat') || '';
+                if (cat === 'all' || cardCats.includes(cat)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Scroll Reveal Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // Random Dynamic Bubble Messages for Mascot
+        let bubbleIdx = 0;
+        setInterval(() => {
+            const bubbleList = i18n[currentLang].mascot_bubbles;
+            bubbleIdx = (bubbleIdx + 1) % bubbleList.length;
+            const bubbleEl = document.getElementById('mascotBubble');
+            if (bubbleEl) {
+                bubbleEl.style.opacity = '0';
+                setTimeout(() => {
+                    bubbleEl.textContent = bubbleList[bubbleIdx];
+                    bubbleEl.style.opacity = '1';
+                }, 250);
+            }
+        }, 5000);
+
+        // Khởi tạo trang với ngôn ngữ đã lưu hoặc mặc định (EN)
+        window.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
+        });
+    </script>
 </body>
 </html>
